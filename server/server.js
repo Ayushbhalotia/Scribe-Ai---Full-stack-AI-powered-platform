@@ -12,9 +12,18 @@ import Blog from './Schema/Blog.js'
 const { credential } = admin;
 import fs from "fs";
 import cors from "cors";
-const serviceAccountkey = JSON.parse(
-  fs.readFileSync("./react-js-blog-website-bf9c9-firebase-adminsdk-ezxo0-ae42ca2537.json", "utf8")
-);
+let serviceAccountkey;
+try {
+  if (process.env.FIREBASE_ADMIN_CREDENTIALS) {
+    serviceAccountkey = JSON.parse(process.env.FIREBASE_ADMIN_CREDENTIALS);
+  } else {
+    serviceAccountkey = JSON.parse(
+      fs.readFileSync("./react-js-blog-website-bf9c9-firebase-adminsdk-ezxo0-ae42ca2537.json", "utf8")
+    );
+  }
+} catch (err) {
+  console.error("Failed to load Firebase credentials. Make sure FIREBASE_ADMIN_CREDENTIALS is set in production or the json file exists locally.");
+}
 import {getAuth} from "firebase-admin/auth"
 import Cloudinary from "cloudinary";
 const { v2: cloudinary } = Cloudinary;
