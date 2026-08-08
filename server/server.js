@@ -22,7 +22,9 @@ try {
     );
   }
 } catch (err) {
-  console.error("Failed to load Firebase credentials. Make sure FIREBASE_ADMIN_CREDENTIALS is set in production or the json file exists locally.");
+  console.error("Failed to load Firebase credentials.");
+  console.error("Error details:", err.message);
+  console.error("Is FIREBASE_ADMIN_CREDENTIALS set?", !!process.env.FIREBASE_ADMIN_CREDENTIALS);
 }
 import {getAuth} from "firebase-admin/auth"
 import Cloudinary from "cloudinary";
