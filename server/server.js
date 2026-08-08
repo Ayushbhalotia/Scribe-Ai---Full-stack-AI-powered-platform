@@ -61,7 +61,7 @@ let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 server.use(express.json());
 
 server.use(cors({
-  origin: ["https://ayush-blog-mern.netlify.app", "http://localhost:5173"],  
+  origin: ["https://mern-ai-frontend-50ev.onrender.com", "http://localhost:5173"],  
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
